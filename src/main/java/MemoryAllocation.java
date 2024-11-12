@@ -1,3 +1,5 @@
+
+
 public class MemoryAllocation
 {
     //package access-reachable by memory manager
@@ -5,21 +7,26 @@ public class MemoryAllocation
     String owner;  //which process owns this memory
     long pos;      //where does it start
     long len;      //how long is the memory
-
-
-
-    //You might want to add additional data/methods here
-
+    MemoryAllocation next;
+    MemoryAllocation prev;
 
     //feel free to alter the constructor if you need/want to
     public MemoryAllocation(String owner, long pos, long len)
-
     {
 	this.owner = owner;
 	this.pos = pos;
 	this.len=len;
     }
-
+    
+    // version of constructor with next + prev
+    public MemoryAllocation(String owner, long pos, long len, MemoryAllocation next, MemoryAllocation prev)
+    {
+	this.owner = owner;
+	this.pos = pos;
+	this.len=len;
+	this.next = next;
+	this.prev = prev;
+    }
 
     public String getOwner()
     {
@@ -36,7 +43,12 @@ public class MemoryAllocation
 	return len;
     }
     
-
+    public MemoryAllocation getNext() {
+    	return next;
+    }
+    public MemoryAllocation getPrev() {
+    	return prev;
+    }
 
     public String toString()
     {
